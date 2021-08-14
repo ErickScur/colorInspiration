@@ -1,4 +1,4 @@
-
+import lockEvent from './lock-event.js'
 //Nav Toggler
 const navbar = document.getElementById("sidebar");
 const navToggler = document.getElementById("navbar-toggler");
@@ -37,36 +37,29 @@ function toggleNav() {
 navToggler.addEventListener('click',toggleNav);
 
 
-//Color Change
+//! Show Icons When Mouse Hover
 const colors = document.querySelectorAll('.color');
 colors.forEach( (color) => {
+    color.history =['#FFFFFF'];
     color.isLocked = false;
     color.addEventListener('mouseover', ()=>{
+        color.querySelector('.undo').style.opacity = 1;
         color.querySelector('.lock').style.opacity = 1;
     });
     color.addEventListener('mouseleave', ()=>{
+        color.querySelector('.undo').style.opacity = 0;
         if(color.querySelector('.lock').isClicked==false){
             color.querySelector('.lock').style.opacity = 0;
         }
     });
 })
 
+//! Event Listener for lock buttons
 const locks = document.querySelectorAll('.lock');
 locks.forEach((lock)=>{
     lock.isClicked = false;
     lock.addEventListener('click', (event)=> {
-        if(lock.isClicked){
-            let color = event.target.parentNode.parentNode;
-            color.isLocked = false;
-            lock.style.color = 'rgb(68, 68, 68)'
-            lock.isClicked = false
-        }else{
-            let color = event.target.parentNode.parentNode;
-            color.isLocked = true;
-            lock.style.color = 'black'
-            lock.isClicked = true
-            lock.style.opacity = 1;
-        }
+        lockEvent(event,lock)
     });
 })
 
@@ -76,10 +69,13 @@ function randomColor(color){
     for (var i = 0; i < 6; i++) {
         newColor += letters[Math.floor(Math.random() * 16)];
     }
+    color.history.push(newColor)
     color.style.backgroundColor = newColor;
     let colorName = color.querySelector('.color-name');
     colorName.innerHTML = newColor;
 }
+
+//! Call the change color function if it isn't locked
 function changeColors(colors){
     colors.forEach((color)=>{
         if(!color.isLocked){
@@ -87,7 +83,29 @@ function changeColors(colors){
         }
     })
 }
-changeColors(colors);
+changeColors(colors);//* Initial Color Change
+
+//! Go back one color
+function backColor(color){
+    console.log(color.history);
+    console.log((color.history.length)-2);
+    let index = (color.history.length)-2;
+    if(index>-1){
+        color.style.backgroundColor = color.history[index];
+        let colorName = color.querySelector('.color-name');
+        colorName.innerHTML =color.history[index];
+        color.history.pop();
+    }
+}
+
+const undoButtons = document.querySelectorAll('.undo');
+undoButtons.forEach((undobtn)=> {
+    undobtn.addEventListener('click', ()=>{
+        let color = undobtn.parentNode
+        backColor(color)
+    })
+})
+
 window.addEventListener("keydown", function (event) {
     if (event.defaultPrevented) {
       return; // Do nothing if the event was already processed

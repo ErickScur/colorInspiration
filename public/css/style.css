@@ -74,13 +74,13 @@
     align-items: center;
     justify-content: flex-end;
 }
-.lock{
+.lock, .undo{
     font-size: 40px;
     transition: all 600ms;
     color: rgb(68, 68, 68);
     opacity: 0;
 }
-.lock:hover{
+.lock:hover, .undo:hover{
     cursor: pointer;
     color: black;
 }
