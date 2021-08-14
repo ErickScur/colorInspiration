@@ -10,13 +10,12 @@
     top:20px;
     left:30px;
     color: black;
-    transition: all 600ms;
+    transition: all 500ms;
     z-index: 100;
 }
 .navbar-toggler:hover{
     cursor: pointer;
-    transform: scale(1.1);
-    color: rgb(68, 68, 68);
+    transform: scale(1.2);
 }
 .sidebar{
     background-color: rgb(156, 156, 156);
@@ -77,13 +76,31 @@
 .lock, .undo{
     font-size: 40px;
     transition: all 600ms;
-    color: rgb(68, 68, 68);
+    color: black;
     opacity: 0;
 }
 .lock:hover, .undo:hover{
     cursor: pointer;
-    color: black;
+    color: rgb(68, 68, 68);
 }
 .color-name{
     margin-bottom: 30%;
+}
+@media screen and (max-width:550px){
+    .container{
+        flex-direction: column;
+    }
+    .color{
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    .color-name{
+        margin-bottom: 0px;
+        margin-right: 40px;
+    }
+    .lock, .undo{
+        margin-right: 20px;
+    }
 }

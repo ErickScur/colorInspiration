@@ -87,8 +87,6 @@ changeColors(colors);//* Initial Color Change
 
 //! Go back one color
 function backColor(color){
-    console.log(color.history);
-    console.log((color.history.length)-2);
     let index = (color.history.length)-2;
     if(index>-1){
         color.style.backgroundColor = color.history[index];
@@ -98,6 +96,7 @@ function backColor(color){
     }
 }
 
+//!Undo Buttons Event
 const undoButtons = document.querySelectorAll('.undo');
 undoButtons.forEach((undobtn)=> {
     undobtn.addEventListener('click', ()=>{
@@ -106,6 +105,7 @@ undoButtons.forEach((undobtn)=> {
     })
 })
 
+//!Keypress event
 window.addEventListener("keydown", function (event) {
     if (event.defaultPrevented) {
       return; // Do nothing if the event was already processed
