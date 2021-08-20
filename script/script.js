@@ -43,11 +43,13 @@ colors.forEach( (color) => {
     color.history =['#FFFFFF'];
     color.isLocked = false;
     color.addEventListener('mouseover', ()=>{
+        color.querySelector('.next').style.opacity = 1;
         color.querySelector('.undo').style.opacity = 1;
         color.querySelector('.lock').style.opacity = 1;
     });
     color.addEventListener('mouseleave', ()=>{
         color.querySelector('.undo').style.opacity = 0;
+        color.querySelector('.next').style.opacity = 0;
         if(color.querySelector('.lock').isClicked==false){
             color.querySelector('.lock').style.opacity = 0;
         }
@@ -61,6 +63,15 @@ locks.forEach((lock)=>{
     lock.addEventListener('click', (event)=> {
         lockEvent(event,lock)
     });
+})
+
+const nextBtns = document.querySelectorAll('.next');
+nextBtns.forEach((next)=>{
+    next.addEventListener('click',(event)=>{
+        let color = event.target.parentNode.parentNode;
+        let colors = document.querySelectorAll('.color');
+        console.log(colors);
+    })
 })
 
 function randomColor(color){
