@@ -36,6 +36,9 @@ function toggleNav() {
 }
 navToggler.addEventListener('click',toggleNav);
 
+document.getElementById('help').addEventListener('click',()=>{
+    alert("Press the 🠮 key to change the colors")
+})
 
 //! Show Icons When Mouse Hover
 const colors = document.querySelectorAll('.color');
@@ -101,6 +104,15 @@ nextBtns.forEach((next)=>{
         colors.item(index).style.backgroundColor = next;
     })
 });
+
+//Copy color when click on the name
+let names = document.querySelectorAll('.color-name');
+names.forEach((btnName)=>{
+    btnName.addEventListener('click', ()=>{
+        navigator.clipboard.writeText(btnName.innerHTML);
+        alert('copied to clipboard')
+    })
+})
 
 function randomColor(color){
     let letters = '0123456789ABCDEF';
