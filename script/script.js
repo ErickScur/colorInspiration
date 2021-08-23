@@ -110,7 +110,6 @@ let names = document.querySelectorAll('.color-name');
 names.forEach((btnName)=>{
     btnName.addEventListener('click', ()=>{
         navigator.clipboard.writeText(btnName.innerHTML);
-        alert('copied to clipboard')
     })
 })
 
