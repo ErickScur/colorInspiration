@@ -5,7 +5,7 @@
 <div align="center">
   <img src="https://i.imgur.com/LZN6ZVI.png" alt="demo" height="425">
   <br>
-  <a href="https://github.com/ErickScur/colorInspiration" target="_blank">Check Out! </a>
+  <a href="https://erickscur.github.io/colorInspiration/" target="_blank">Check Out! </a>
 </div>
 
 
