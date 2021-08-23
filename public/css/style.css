@@ -86,6 +86,10 @@
 .color-name{
     margin-bottom: 30%;
 }
+.color-name:hover{
+    cursor: pointer;
+    color: rgb(68, 68, 68);
+}
 @media screen and (max-width:550px){
     .container{
         flex-direction: column;

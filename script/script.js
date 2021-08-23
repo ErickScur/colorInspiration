@@ -65,12 +65,40 @@ locks.forEach((lock)=>{
     });
 })
 
+//Find the index of the element in the Node List
+function findIndex(el) {
+    var children = el.parentNode.childNodes,
+        i = 0;
+    for (; i < children.length; i++) {
+        if (children[i] == el) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+//Change the color with the next div
 const nextBtns = document.querySelectorAll('.next');
 nextBtns.forEach((next)=>{
     next.addEventListener('click',(event)=>{
         let color = event.target.parentNode.parentNode;
-        let colors = document.querySelectorAll('.color');
-        console.log(colors);
+        let colors = color.parentNode.childNodes;
+        let index = findIndex(color);
+        let indexNext;
+
+        if(index==7){
+            indexNext = 1;
+        }else{
+            indexNext = index+2;
+        }
+
+        let next = colors.item(indexNext).querySelector('.color-name').innerHTML;
+        let old =  color.querySelector('.color-name').innerHTML;
+
+        colors.item(indexNext).querySelector('.color-name').innerHTML = old
+        colors.item(indexNext).style.backgroundColor = old;
+        colors.item(index).querySelector('.color-name').innerHTML = next;
+        colors.item(index).style.backgroundColor = next;
     })
 })
 
