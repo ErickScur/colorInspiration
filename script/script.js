@@ -100,7 +100,7 @@ nextBtns.forEach((next)=>{
         colors.item(index).querySelector('.color-name').innerHTML = next;
         colors.item(index).style.backgroundColor = next;
     })
-})
+});
 
 function randomColor(color){
     let letters = '0123456789ABCDEF';
